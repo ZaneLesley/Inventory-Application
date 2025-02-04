@@ -8,6 +8,14 @@
     </title>
 </head>
 <body>
-    <div>Main Page</div>
+<ul>
+    <li>
+        <% if (locals.stores) { %>
+            <% stores.forEach(store => { %>
+                ID: <%= store.store_id; %>
+            <% }) %>
+        <% } %>
+    </li>
+</ul>
 </body>
 </html>
