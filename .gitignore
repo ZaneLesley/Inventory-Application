@@ -128,3 +128,10 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Jet Brains
+/.idea/.gitignore
+/.idea/dataSources.xml
+/.idea/inventory-app.iml
+/.idea/modules.xml
+/.idea/vcs.xml
