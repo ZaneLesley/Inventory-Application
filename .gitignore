@@ -130,8 +130,4 @@ dist
 .pnp.*
 
 # Jet Brains
-/.idea/.gitignore
-/.idea/dataSources.xml
-/.idea/inventory-app.iml
-/.idea/modules.xml
-/.idea/vcs.xml
+.idea
