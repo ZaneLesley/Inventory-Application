@@ -19,9 +19,21 @@ exports.storeEntityGet = async (req, res) => {
     const {id, entity} = req.params;
     const store = await storeQueries.getStoreById(id);
     const categories = await categoryQueries.getAllCategories(id, entity);
+    console.log(req.get('Referer'))
     res.render("productView", {
         title: "Product View",
         store: store[0],
         categories: categories,
+        url: req.baseUrl + req.url,
+    })
+}
+
+exports.storeItemsGet = async (req, res) => {
+    const {id, entity} = req.params;
+    const store = await storeQueries.getStoreById(id);
+    res.render("itemsView", {
+        title: "Item View",
+        store: store[0],
+        url: req.get('Referer') || '/'
     })
 }

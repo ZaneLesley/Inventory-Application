@@ -29,6 +29,11 @@ async function insertCategoriesSQL(client, result, entity_name) {
     }
 }
 
+// TODO
+async function insertItemSQL(client){
+    return undefined
+}
+
 async function main() {
     const client = new Client({
         connectionString: process.env.DATABASE_URL,

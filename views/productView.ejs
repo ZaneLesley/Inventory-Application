@@ -10,7 +10,7 @@
 <br>
 <% if (locals.categories) { %>
     <%categories.forEach( category => {%>
-        <div><%= category.category_name%></div>
+        <a href="<%=url%>/<%=category.category_name%>"><div><%= category.category_name%></div></a>
     <% }) %>
 <% } %>
 </body>
