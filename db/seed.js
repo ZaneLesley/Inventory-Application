@@ -16,6 +16,19 @@ async function truncateAllTables(client) {
     RESTART IDENTITY CASCADE`);
 }
 
+async function insertCategoriesSQL(client, result, entity_name) {
+    const categories = ['Fruits', 'Vegetables', 'Produce']
+    for (const row of result.rows) {
+        const {store_id } = row
+        for (const category of categories) {
+            const insertCategorySQL = `
+            INSERT INTO categories (store_id, entity_name, category_name) 
+            VALUES ($1, $2, $3)`;
+            await client.query(insertCategorySQL, [store_id, entity_name, category]);
+        }
+    }
+}
+
 async function main() {
     const client = new Client({
         connectionString: process.env.DATABASE_URL,
@@ -37,6 +50,7 @@ async function main() {
             await client.query(insertProductsSQL, [product, store_id]);
         }
     }
+    await insertCategoriesSQL(client, result, "Product");
     await client.end();
     console.log("Done seeding.");
 }

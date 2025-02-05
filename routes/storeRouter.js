@@ -4,5 +4,6 @@ const storeRouter = Router();
 
 // Routes
 storeRouter.get("/:id", storeController.storeGet)
+storeRouter.get("/:id/:entity/", storeController.storeEntityGet)
 
 module.exports = storeRouter;
