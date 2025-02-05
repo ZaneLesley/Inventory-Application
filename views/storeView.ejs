@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <%= title %>
+        <%= title; %>
     </title>
 </head>
 <body>
 <% if (locals.store) { %>
-    <div><%= store.store_id %></div>
-    <div><%= store.store_name %></div>
-    <div><%= store.store_location%></div>
+    <div><%= store.store_id; %></div>
+    <div><%= store.store_name; %></div>
+    <div><%= store.store_location; %></div>
     <a href="/">Go back to Main Page</a>
+<% } %>
+<div><br></div>
+<% if (locals.entity_type) { %>
+    <% entity_type.forEach(entity => { %>
+        <div><%= entity.product_category_name %></div>
+    <% }) %>
 <% } %>
 </body>
 </html>
