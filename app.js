@@ -5,12 +5,14 @@ const app = express();
 
 // Routers
 const inventoryRouter = require("./routes/inventoryRouter");
+const storeRouter = require("./routes/storeRouter");
 
 
 // Application
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use("/", inventoryRouter);
+app.use("/store", storeRouter);
 
 
 // Configuration

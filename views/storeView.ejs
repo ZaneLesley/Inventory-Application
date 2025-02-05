@@ -8,10 +8,11 @@
     </title>
 </head>
 <body>
-<% if (locals.stores) { %>
-    <% stores.forEach(store => { %>
-        <li><a href="/store/<%= store.store_id %>">Store: <%= store.store_name; %> </a></li>
-    <% }) %>
+<% if (locals.store) { %>
+    <div><%= store.store_id %></div>
+    <div><%= store.store_name %></div>
+    <div><%= store.store_location%></div>
+    <a href="/">Go back to Main Page</a>
 <% } %>
 </body>
 </html>
