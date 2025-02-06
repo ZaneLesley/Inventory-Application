@@ -7,6 +7,7 @@
 </head>
 <body>
 <%- include("partials/storePartial.ejs") %>
+<a href="<%= locals.url2; %>">Back to Stores</a>
 <br>
 <% if (locals.categories) { %>
     <% categories.forEach( category => { %>

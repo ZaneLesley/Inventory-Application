@@ -8,5 +8,14 @@
 <body>
 <a href="<%= locals.url; %>">Back to Products</a>
 <%- include("./partials/storePartial.ejs") %>
+<br>
+<% if (locals.items) { %>
+    <% items.forEach( item => { %>
+        <div>
+            <div><%= item.item_name%></div>
+            <div>Price: $<%= item.item_price %></div>
+        </div>
+    <% }) %>
+<% } %>
 </body>
 </html>
