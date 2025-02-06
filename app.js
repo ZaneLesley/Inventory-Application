@@ -6,7 +6,6 @@ const app = express();
 // Routers
 const inventoryRouter = require("./routes/inventoryRouter");
 const storeRouter = require("./routes/storeRouter");
-const temp = require("./models/entityTypeQueries");
 
 
 // Application
