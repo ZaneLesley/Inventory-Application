@@ -17,7 +17,7 @@
 <div><br></div>
 <% if (locals.entity_type) { %>
     <% entity_type.forEach(entity => { %>
-        <a href="/store/<%= store.store_id %>/<%= entity.entity_name %>">
+        <a href="/store/<%= encodeURIComponent(store.store_id) %>/<%= encodeURIComponent(entity.entity_name)%>">
             <div><%= entity.entity_name %></div>
         </a>
 

@@ -10,7 +10,7 @@
 <body>
 <% if (locals.stores) { %>
     <% stores.forEach(store => { %>
-        <li><a href="/store/<%= store.store_id ;%>">Store: <%= store.store_name; %> </a></li>
+        <li><a href="/store/<%= encodeURIComponent(store.store_id) ;%>">Store: <%= store.store_name; %> </a></li>
     <% }) %>
 <% } %>
 </body>

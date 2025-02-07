@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
+app.locals.encodeURIComponent = encodeURIComponent;
 
 // Routers
 const inventoryRouter = require("./routes/inventoryRouter");

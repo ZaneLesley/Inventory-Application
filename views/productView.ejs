@@ -11,7 +11,7 @@
 <br>
 <% if (locals.categories) { %>
     <% categories.forEach( category => { %>
-        <a href="<%= next_url %>/<%= category.category_name %>">
+        <a href="<%= next_url %>/<%= encodeURIComponent(category.category_name) %>">
             <div><%= category.category_name %></div>
         </a>
     <% }) %>

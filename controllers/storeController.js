@@ -30,9 +30,9 @@ exports.storeEntityGet = async (req, res) => {
         title: "Product View",
         store: store[0],
         categories: categories,
-        previous_url: req.baseUrl + `/${id}`,
-        next_url: req.baseUrl + `/${id}/${entity}`,
-        updateUrl: req.baseUrl + `/update/${id}/${entity}`
+        previous_url: req.baseUrl + `/${encodeURIComponent(id)}`,
+        next_url: req.baseUrl + `/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
+        updateUrl: req.baseUrl + `/update/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`
     });
 };
 
@@ -45,7 +45,7 @@ exports.storeItemsGet = async (req, res) => {
     res.render("itemsView", {
         title: "Item View",
         store: store[0],
-        url: req.baseUrl + `/${id}/${entity}`,
+        url: req.baseUrl + `/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
         items: items,
     });
 };
@@ -71,9 +71,9 @@ exports.storeCategoryPost = [
                 title: "Product View",
                 store: store[0],
                 categories: categories,
-                previous_url: req.baseUrl + `/${id}`,
-                next_url: req.baseUrl + `/${id}/${entity}`,
-                updateUrl: req.baseUrl + `/update/${id}/${entity}`,
+                previous_url: req.baseUrl + `/${encodeURIComponent(id)}`,
+                next_url: req.baseUrl + `/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
+                updateUrl: req.baseUrl + `/update/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
                 errors: errors.array(),
             });
         }
@@ -89,9 +89,9 @@ exports.storeCategoryPost = [
                 title: "Product View",
                 store: store[0],
                 categories: categories,
-                previous_url: req.baseUrl + `/${id}`,
-                next_url: req.baseUrl + `/${id}/${entity}`,
-                updateUrl: req.baseUrl + `/update/${id}/${entity}`,
+                previous_url: req.baseUrl + `/${encodeURIComponent(id)}`,
+                next_url: req.baseUrl + `/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
+                updateUrl: req.baseUrl + `/update/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
                 errors: [{msg: error.message}],
             });
         }
