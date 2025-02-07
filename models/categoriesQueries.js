@@ -25,6 +25,13 @@ async function getCategories(store_id, entity_name, column = 'category_name') {
     return rows;
 }
 
+async function insertCategory(entity_type_id, category_name) {
+    const result = await pool.query(`INSERT INTO categories (entity_type_id, category_name) VALUES ($1, $2)`,
+        [entity_type_id[0], category_name]);
+    console.log(result);
+    return result
+}
 module.exports = {
     getCategories,
+    insertCategory,
 };

@@ -7,14 +7,27 @@
 </head>
 <body>
 <%- include("partials/storePartial.ejs") %>
-<a href="<%= locals.url2; %>">Back to Stores</a>
+<a href=<%= previous_url %>>Back to Category</a>
 <br>
 <% if (locals.categories) { %>
     <% categories.forEach( category => { %>
-        <a href="<%= url %>/<%= category.category_name %>">
+        <a href="<%= next_url %>/<%= category.category_name %>">
             <div><%= category.category_name %></div>
         </a>
     <% }) %>
 <% } %>
+<br>
+<%- include("partials/errors.ejs") %>
+<form action=<%= updateUrl %> method="POST">
+    <ul>
+        <li>
+            <label for="category_name">Category Name: </label>
+            <input type="text" id="category_name" name="category_name" required>
+        </li>
+        <li>
+            <button type="submit">Add</button>
+        </li>
+    </ul>
+</form>
 </body>
 </html>
