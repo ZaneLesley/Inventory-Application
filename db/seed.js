@@ -3,7 +3,7 @@ require('dotenv').config({path: '../.env'});
 
 async function truncateAllTables(client) {
     await client.query(`
-    TRUNCATE TABLE entity_type, categories
+    TRUNCATE TABLE entity_type, categories, items
     RESTART IDENTITY CASCADE`);
 }
 
