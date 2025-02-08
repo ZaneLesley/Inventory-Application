@@ -5,15 +5,18 @@ const app = express();
 app.locals.encodeURIComponent = encodeURIComponent;
 
 // Routers
-const inventoryRouter = require("./routes/inventoryRouter");
-const storeRouter = require("./routes/storeRouter");
+const apiRouter = require("./routes/apiRouter");
+
+// Redirect root ("/") to "/api"
+app.get("/", (req, res) => {
+    res.redirect("/api");
+});
 
 
 // Application
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
-app.use("/", inventoryRouter);
-app.use("/store", storeRouter);
+app.use("/api", apiRouter);
 
 
 // Configuration

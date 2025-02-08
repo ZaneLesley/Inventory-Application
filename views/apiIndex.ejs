@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Index</title>
+</head>
+<body>
+<h1>Welcome to the Inventory API</h1>
+<p>Here are the available endpoints:</p>
+<ul>
+    <% endpoints.forEach(endpoint => { %>
+        <li>
+            <strong><%= endpoint.method %>:</strong>
+            <a href="<%= endpoint.path %>"><%= endpoint.path %></a> - <%= endpoint.description %>
+        </li>
+    <% }) %>
+</ul>
+</body>
+</html>
