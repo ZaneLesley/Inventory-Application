@@ -25,14 +25,23 @@ exports.storeGet = async (req, res) => {
 exports.storeEntityGet = async (req, res) => {
     const {id, entity} = req.params;
     const store = await storeQueries.getStoreById(id);
-    const categories = await categoryQueries.getCategories(id, entity, 'category_name');
+    const categories_names = await categoryQueries.getCategories(id, entity, 'category_name');
+    const categories_ids = await categoryQueries.getCategories(id, entity, 'category_id');
+
+    // Merge ids and names together
+    const categories = categories_ids.map((id, index) => ({
+        ...id,
+        category_name: categories_names[index].category_name,
+    }));
+    console.log(categories);
     res.render("productView", {
         title: "Product View",
         store: store[0],
         categories: categories,
         previous_url: req.baseUrl + `/${encodeURIComponent(id)}`,
         next_url: req.baseUrl + `/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
-        updateUrl: req.baseUrl + `/update/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`
+        updateUrl: req.baseUrl + `/update/category/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
+        updateUrl2: req.baseUrl + `/update/item/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`
     });
 };
 
@@ -73,7 +82,8 @@ exports.storeCategoryPost = [
                 categories: categories,
                 previous_url: req.baseUrl + `/${encodeURIComponent(id)}`,
                 next_url: req.baseUrl + `/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
-                updateUrl: req.baseUrl + `/update/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
+                updateUrl: req.baseUrl + `/update/category/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
+                updateUrl2: req.baseUrl + `/update/item/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
                 errors: errors.array(),
             });
         }
@@ -91,10 +101,21 @@ exports.storeCategoryPost = [
                 categories: categories,
                 previous_url: req.baseUrl + `/${encodeURIComponent(id)}`,
                 next_url: req.baseUrl + `/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
-                updateUrl: req.baseUrl + `/update/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
+                updateUrl: req.baseUrl + `/update/category/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
+                updateUrl2: req.baseUrl + `/update/item/${encodeURIComponent(id)}/${encodeURIComponent(entity)}`,
                 errors: [{msg: error.message}],
             });
         }
     }
 ];
+
+validateItem = [body("item_name").trim().isAlpha('en-US').withMessage("Must contain alphabetic characters")
+    .isLength({min: 2, max: 50}).withMessage("Must be between 2 and 50 characters"),
+    body("item_price").trim().isDecimal({decimal_digits: '1,2'}).withMessage("Must be a decimal with 1 or 2 digits").toFloat(),
+    body("category_id").trim().isNumeric().toInt()];
+
+exports.storeItemPost = (req, res) => {
+    console.log("here")
+    res.send("yippee")
+}
 
