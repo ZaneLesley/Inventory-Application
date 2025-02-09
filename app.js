@@ -1,8 +1,16 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 app.locals.encodeURIComponent = encodeURIComponent;
+app.use(cors());
+
+// Logs for all routes to print requests to console.
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
 
 // Routers
 const apiRouter = require("./routes/apiRouter");
