@@ -32,11 +32,12 @@ model Product {
 }
 
 model Item {
-  id        Int     @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   name      String
-  price     Decimal
+  price     Decimal  @db.Decimal(10, 2)
+  dateAdded DateTime @default(now())
   productId Int
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
 
   @@unique([productId, name])
 }
